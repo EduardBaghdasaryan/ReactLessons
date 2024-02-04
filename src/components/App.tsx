@@ -1,12 +1,8 @@
 import React from "react";
-import { FC } from "react";
+import Grid from "./Grid";
 
-const App: FC = () => {
-  return (
-    <div>
-      <p>Hello world</p>
-    </div>
-  );
-};
+function App() {
+  return <Grid />;
+}
 
 export default App;
