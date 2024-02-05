@@ -60,7 +60,6 @@ const backtrackPath = (grid: number[][], end: Point): Point[] => {
   let step = grid[x][y];
 
   while (step > 1) {
-    // Directions: Down, Right, Up, Left
     const directions = [
       [1, 0],
       [0, 1],
@@ -82,10 +81,10 @@ const backtrackPath = (grid: number[][], end: Point): Point[] => {
         path.push({ x: nx, y: ny });
         [x, y] = [nx, ny];
         step -= 1;
-        break; // Break after finding the next step in the path
+        break;
       }
     }
   }
 
-  return path.reverse(); // Reverse to get path from start to end
+  return path.reverse();
 };
