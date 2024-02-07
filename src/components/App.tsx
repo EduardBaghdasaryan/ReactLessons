@@ -1,20 +1,19 @@
-import React, { FC } from "react";
-import SignIn from "./SignIn";
-import Todos from "./Todos";
+import React, { FC, useState } from "react";
 
-import { useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ROUTES } from "../constants";
-import { isAuthSelector } from "../store/signin/sigin-selector";
+import UsersList from "./Users";
+import UserItem from "./UserItem";
 
 const App: FC = () => {
-  const isAuth = useSelector(isAuthSelector);
   return (
     <Router>
       <Routes>
-        <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
-        {isAuth && <Route path={ROUTES.TODOS} element={<Todos />} />}
-        <Route path="*" element={<SignIn />} />
+        {<Route path={ROUTES.HOME} element={<UsersList />} />}
+        {<Route path={ROUTES.USERS} element={<UserItem />} />}
+        {<Route path={ROUTES.CREATE} element={<UserItem />} />}
+
+        <Route path="*" element={<UsersList />} />
       </Routes>
     </Router>
   );

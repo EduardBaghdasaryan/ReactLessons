@@ -1,0 +1,51 @@
+.edit-user-modal {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  .edit-user-modal h2 {
+    margin-bottom: 10px;
+  }
+  
+  .edit-user-modal label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .edit-user-modal input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 4px;
+  }
+  
+  .edit-user-modal .buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .edit-user-modal .buttons button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color:#28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .edit-user-modal .buttons button:last-child {
+    margin-right: 0;
+    background-color: #28a745;
+  }
+  
+  .edit-user-modal .buttons button:hover {
+    opacity: 0.8;
+  }
+  

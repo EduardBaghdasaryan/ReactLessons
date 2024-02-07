@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import signInReducer from "./signin/signin-slice";
-import todosReducer from "./todos/todos-slice";
+import userReducer from "./users/users-slice";
 
 export const store = configureStore({
   reducer: {
-    signIn: signInReducer,
-    todos: todosReducer,
+    todos: userReducer,
   },
 });
 
