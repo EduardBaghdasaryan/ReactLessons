@@ -23,7 +23,7 @@ const Stream: FC = () => {
         <select id="camera" onChange={handleCameraChange}>
           {cameras.map((camera) => (
             <option key={camera.deviceId} value={camera.deviceId}>
-              {camera.label} ({camera.deviceId})
+              {camera.label}
             </option>
           ))}
         </select>
@@ -33,7 +33,7 @@ const Stream: FC = () => {
         <select id="microphone" onChange={handleMicrophoneChange}>
           {microphones.map((microphone) => (
             <option key={microphone.deviceId} value={microphone.deviceId}>
-              {microphone.label} ({microphone.deviceId})
+              {microphone.label}
             </option>
           ))}
         </select>
