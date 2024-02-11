@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { streamProvider } from "../providers/Stream";
 import { deviceManager } from "../providers/DeviceManager";
-import { log } from "util";
+import { KIND_TYPES } from "../constants";
+import { filterAndMapDevices } from "../utils/index";
 
 interface MediaDeviceInfoExtended extends MediaDeviceInfo {
   selected: boolean;
@@ -11,7 +12,7 @@ export const useStream = (): [
   React.RefObject<HTMLVideoElement>,
   MediaDeviceInfoExtended[],
   MediaDeviceInfoExtended[],
-  (deviceId: string, type: "video" | "audio") => void
+  (deviceId: string, type: KIND_TYPES) => void
 ] => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [cameras, setCameras] = useState<MediaDeviceInfoExtended[]>([]);
@@ -24,31 +25,11 @@ export const useStream = (): [
 
         const allDevices = deviceManager.getAllDevices();
 
-        const camerasArray = allDevices
-          .filter((device) => device.kind === "videoinput")
-          .map((device) => {
-            return {
-              deviceId: device.deviceId,
-              groupId: device.groupId,
-              kind: device.kind,
-              label: device.label,
-              toJSON: device.toJSON,
-              selected: false,
-            };
-          });
-
-        const microphonesArray = allDevices
-          .filter((device) => device.kind === "audioinput")
-          .map((device) => {
-            return {
-              deviceId: device.deviceId,
-              groupId: device.groupId,
-              kind: device.kind,
-              label: device.label,
-              toJSON: device.toJSON,
-              selected: false,
-            };
-          });
+        const camerasArray = filterAndMapDevices(allDevices, KIND_TYPES.VIDEO);
+        const microphonesArray = filterAndMapDevices(
+          allDevices,
+          KIND_TYPES.AUDIO
+        );
 
         setCameras(camerasArray);
         setMicrophones(microphonesArray);
@@ -68,6 +49,7 @@ export const useStream = (): [
 
     fetchDevices();
   }, []);
+
   const startStreaming = async (
     videoDeviceId: string,
     audioDeviceId: string
@@ -90,23 +72,23 @@ export const useStream = (): [
     }
   };
 
-  const handleDeviceChange = (deviceId: string, type: "video" | "audio") => {
-    const devicesArray = type === "video" ? cameras : microphones;
+  const handleDeviceChange = (deviceId: string, type: KIND_TYPES) => {
+    const devicesArray = type === KIND_TYPES.VIDEO ? cameras : microphones;
     devicesArray.forEach(
       (device) => (device.selected = device.deviceId === deviceId)
     );
 
-    if (type === "video") {
+    if (type === KIND_TYPES.VIDEO) {
       setCameras([...devicesArray]);
     } else {
       setMicrophones([...devicesArray]);
     }
 
     startStreaming(
-      type === "video"
+      type === KIND_TYPES.VIDEO
         ? deviceId
         : cameras.find((device) => device.selected)!.deviceId,
-      type === "audio"
+      type === KIND_TYPES.AUDIO
         ? deviceId
         : microphones.find((device) => device.selected)!.deviceId
     );

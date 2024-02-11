@@ -1,12 +1,8 @@
-import { ReactNode } from "react";
-
-export type CellProps = {
-  onClick: () => void;
-  backgroundColor?: string;
-  children: ReactNode;
-};
-
-export type Point = {
-  x: number;
-  y: number;
+export type Device = {
+  deviceId: string;
+  groupId: string;
+  kind: string;
+  label: string;
+  toJSON: () => JSON;
+  selected: boolean;
 };
