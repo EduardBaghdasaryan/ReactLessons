@@ -1,8 +1,8 @@
-import React from "react";
-import Grid from "./Grid";
+import React, { FC } from "react";
+import Stream from "./Stream";
 
-function App() {
-  return <Grid />;
-}
+const App: FC = () => {
+  return <Stream />;
+};
 
 export default App;
