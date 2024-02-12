@@ -1,17 +1,26 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useStream } from "../hooks/index";
 import { KIND_TYPES } from "../constants";
+import { streamProvider } from "../providers/Stream";
 
 const Stream: FC = () => {
   const [videoRef, cameras, microphones, handleDeviceChange] = useStream();
 
+  useEffect(() => {
+    return () => {
+      streamProvider.endStream();
+    };
+  }, []);
+
   const handleCameraChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    streamProvider.endStream();
     handleDeviceChange(event.target.value, KIND_TYPES.VIDEO);
   };
 
   const handleMicrophoneChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
+    streamProvider.endStream();
     handleDeviceChange(event.target.value, KIND_TYPES.AUDIO);
   };
 

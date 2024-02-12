@@ -12,6 +12,7 @@ const Record: FC = () => {
 
   const handleEndRecord = () => {
     setIsRecording(false);
+    streamProvider.endStream();
     streamRecorder.endRecord();
   };
 

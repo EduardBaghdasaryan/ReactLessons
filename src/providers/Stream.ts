@@ -17,6 +17,14 @@ class StreamProvider {
     }
   }
 
+  endStream(): void {
+    if (this.stream) {
+      this.stream.getTracks().forEach((track) => track.stop());
+      this.stream = null;
+      console.log("stream is ended");
+    }
+  }
+
   getStream(): MediaStream | null {
     return this.stream;
   }

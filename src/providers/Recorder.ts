@@ -1,10 +1,13 @@
 class StreamRecorder {
   private mediaRecorder: MediaRecorder | null = null;
   private recordedChunks: Blob[] = [];
+  private chunkInterval: number = 2000;
 
   startRecord(stream: MediaStream): void {
     this.recordedChunks = [];
     this.mediaRecorder = new MediaRecorder(stream);
+
+    console.log("recordedChunks", this.recordedChunks);
 
     this.mediaRecorder.ondataavailable = (event) => {
       if (event.data.size > 0) {
@@ -12,20 +15,23 @@ class StreamRecorder {
       }
     };
 
-    this.mediaRecorder.onstop = async () => {
-      const recordedBlob = new Blob(this.recordedChunks, {
-        type: this.mediaRecorder?.mimeType,
-      });
-      await this.saveRecordedStream(recordedBlob);
-    };
-
-    this.mediaRecorder.start();
+    this.mediaRecorder.start(this.chunkInterval);
   }
 
   endRecord(): void {
     if (this.mediaRecorder && this.mediaRecorder.state !== "inactive") {
       this.mediaRecorder.stop();
+      this.combineChunks();
     }
+
+    console.log("end", this.recordedChunks);
+  }
+
+  private combineChunks(): void {
+    const recordedBlob = new Blob(this.recordedChunks, {
+      type: this.mediaRecorder?.mimeType,
+    });
+    this.saveRecordedStream(recordedBlob);
   }
 
   private async saveRecordedStream(recordedBlob: Blob): Promise<void> {
