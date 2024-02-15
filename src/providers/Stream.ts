@@ -1,3 +1,5 @@
+import { streamRecorder } from "./Recorder";
+
 class StreamProvider {
   private stream: MediaStream | null = null;
 
@@ -27,6 +29,29 @@ class StreamProvider {
 
   getStream(): MediaStream | null {
     return this.stream;
+  }
+
+  async downloadRecordedVideo(): Promise<void> {
+    try {
+      const recordedStreams = await streamRecorder.getRecordedStreams();
+
+      if (recordedStreams.length === 0) {
+        console.error("No recorded streams found.");
+        return;
+      }
+
+      const recordedBlob = recordedStreams[recordedStreams.length - 1];
+      const url = URL.createObjectURL(recordedBlob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "recorded_video.webm";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading recorded video:", error);
+    }
   }
 }
 

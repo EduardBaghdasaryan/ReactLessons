@@ -3,6 +3,43 @@ class StreamRecorder {
   private recordedChunks: Blob[] = [];
   private chunkInterval: number = 2000;
 
+  async getRecordedStreams(): Promise<Blob[]> {
+    return new Promise((resolve, reject) => {
+      try {
+        const request = indexedDB.open("recordedStreamsDB", 1);
+
+        request.onerror = (event) => {
+          reject(
+            `Error opening database: ${
+              (event.target as IDBOpenDBRequest).error
+            }`
+          );
+        };
+
+        request.onsuccess = async (event) => {
+          const db = (event.target as IDBOpenDBRequest).result;
+          const transaction = db.transaction("recordedStreams", "readonly");
+          const objectStore = transaction.objectStore("recordedStreams");
+          const getRequest = objectStore.getAll();
+
+          getRequest.onerror = (event) => {
+            reject(
+              `Error retrieving recorded streams: ${
+                (event.target as IDBRequest).error
+              }`
+            );
+          };
+
+          getRequest.onsuccess = (event) => {
+            resolve((event.target as IDBRequest).result as Blob[]);
+          };
+        };
+      } catch (error) {
+        reject(`Error getting recorded streams: ${error}`);
+      }
+    });
+  }
+
   startRecord(stream: MediaStream): void {
     this.recordedChunks = [];
     this.mediaRecorder = new MediaRecorder(stream);

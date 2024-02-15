@@ -16,6 +16,10 @@ const Record: FC = () => {
     streamRecorder.endRecord();
   };
 
+  const handleDownload = () => {
+    streamProvider.downloadRecordedVideo();
+  };
+
   return (
     <div>
       <div>
@@ -25,6 +29,7 @@ const Record: FC = () => {
           <button onClick={handleStartRecord}>Start Recording</button>
         )}
       </div>
+      <button onClick={handleDownload}> Download</button>
     </div>
   );
 };
