@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "target": "es6",
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noEmit": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

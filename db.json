@@ -1,0 +1,146 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "6453",
+      "userData": {
+        "email": "test@email.com",
+        "password": "password1"
+      }
+    },
+    {
+      "id": "9bc9",
+      "userData": {
+        "email": "test@email.com",
+        "password": "password1"
+      }
+    },
+    {
+      "id": "ae32",
+      "userData": {
+        "email": "test@email.com",
+        "password": "password1"
+      }
+    },
+    {
+      "id": "18a0",
+      "userData": {
+        "email": "test@email.com",
+        "password": "password1"
+      }
+    },
+    {
+      "id": "2110",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "5237",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "57e7",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "f899",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "d88a",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "d86f",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "fe96",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "9246",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "5d54",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "b633",
+      "email": "test@email.com",
+      "password": "password1"
+    },
+    {
+      "id": "b283",
+      "email": "test@email.com",
+      "password": "password1"
+    }
+  ],
+  "movies": [
+    {
+      "id": "1",
+      "title": "Movie Title 1",
+      "description": "Description of Movie 1",
+      "year": 2022,
+      "country": "Country 1",
+      "rating": 8.5,
+      "genres": [
+        "Genre 1",
+        "Genre 2"
+      ],
+      "actors": [
+        "Actor 1",
+        "Actor 2"
+      ],
+      "imageUrl": "https://example.com/image1.jpg",
+      "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    },
+    {
+      "id": "2",
+      "title": "Movie Title 2",
+      "description": "Description of Movie 2",
+      "year": 2023,
+      "country": "Country 2",
+      "rating": 7.8,
+      "genres": [
+        "Genre 2",
+        "Genre 3"
+      ],
+      "actors": [
+        "Actor 3",
+        "Actor 4"
+      ],
+      "imageUrl": "https://example.com/image2.jpg",
+      "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    },
+    {
+      "id": "",
+      "title": "title 3",
+      "description": "dasfsdf",
+      "year": "2024",
+      "country": "country 3",
+      "rating": "6",
+      "genres": [
+        "genre3"
+      ],
+      "actors": [
+        "genre6"
+      ],
+      "imageUrl": "qweqw",
+      "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    }
+  ]
+}
