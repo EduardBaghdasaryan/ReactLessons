@@ -4,6 +4,11 @@ export type SigninInitialState = {
   userData: User;
 };
 
+export type SignIn = {
+  email: string;
+  password: string;
+};
+
 export type User = {
   id: string;
   firstName: string;

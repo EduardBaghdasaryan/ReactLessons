@@ -1,14 +1,31 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AppDispatch } from "../../store";
 import { useDispatch } from "react-redux";
-import { signUpThunk } from "../../store/signin/signin-thunks";
+import { signInThunk } from "../../store/signin/signin-thunks";
+import { SignIn } from "../../types";
+import { AppDispatch } from "../../store";
+import { ROUTES } from "../../constants";
 
 const Signin: FC = () => {
+  const [formData, setFormData] = useState<SignIn>({
+    email: "",
+    password: "",
+  });
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(signUpThunk(user));
+    dispatch(signInThunk(formData));
+    navigate(ROUTES.HOME);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
@@ -17,7 +34,14 @@ const Signin: FC = () => {
       <form className="form" onSubmit={handleSubmit}>
         <div className="formGroup">
           <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" className="input" />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="input"
+            value={formData.email}
+            onChange={handleChange}
+          />
         </div>
         <div className="formGroup">
           <label htmlFor="password">Password:</label>
@@ -26,6 +50,8 @@ const Signin: FC = () => {
             id="password"
             name="password"
             className="input"
+            value={formData.password}
+            onChange={handleChange}
           />
         </div>
         <button type="submit" className="button">

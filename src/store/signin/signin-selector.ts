@@ -10,7 +10,7 @@ export const isAuthSelector = createSelector(
 
 export const userIdSelector = createSelector(
   signInSelector,
-  (singin) => singin.id
+  (singin) => singin.userData.id
 );
 
 export const isLoadingSelector = createSelector(

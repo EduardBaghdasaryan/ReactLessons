@@ -1,16 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { User } from "../../types";
-import { signInApiCall } from "../../services";
+import { SignIn, User } from "../../types";
+import { signInApiCall, singUpApiCall } from "../../services";
 
 export const signInThunk = createAsyncThunk<
   User,
-  { data: User },
+  SignIn,
   { rejectValue: string }
->("users/signin", async ({ data }, { rejectWithValue }) => {
+>("users/signin", async (signIn, { rejectWithValue }) => {
   try {
-    return signInApiCall(data);
+    return await signInApiCall(signIn);
   } catch (error) {
-    return rejectWithValue("Failed delete user");
+    return rejectWithValue("Failed to sign in");
   }
 });
 
@@ -20,7 +20,7 @@ export const signUpThunk = createAsyncThunk<
   { rejectValue: string }
 >("users/createUser", async (user, { rejectWithValue }) => {
   try {
-    return signInApiCall(user);
+    return singUpApiCall(user);
   } catch (error) {
     return rejectWithValue("Failed delete user");
   }
