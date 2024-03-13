@@ -5,6 +5,11 @@ const ROUTES = {
   SIGN_UP: "/signup",
   HOME: "/home",
   ADMIN: "/admin",
+  MY_PROFILE: "/profile",
+  PRODUCT_LIST: "/products",
+  PRODUCT_DETAILS: "/product-details",
+  SHOPPING_CART: "/cart",
+  ORDERS: "/orders",
 };
 
 export { API_URL, ROUTES };
