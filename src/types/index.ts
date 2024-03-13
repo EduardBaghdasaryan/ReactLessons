@@ -1,7 +1,7 @@
 export type SigninInitialState = {
-  id: string | null;
   isAuth: boolean;
   isLoading: boolean;
+  userData: User;
 };
 
 export type User = {

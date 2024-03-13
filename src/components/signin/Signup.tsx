@@ -1,5 +1,9 @@
 import React, { FC, useState } from "react";
 import { User } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store";
+import { signUpThunk } from "../../store/signin/signin-thunks";
+import { isLoadingSelector } from "../../store/signin/signin-selector";
 
 const Signup: FC = () => {
   const [user, setUser] = useState<User>({
@@ -11,9 +15,13 @@ const Signup: FC = () => {
     phone: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setUser(user);
+  const dispatch: AppDispatch = useDispatch();
+
+  const isLoading = useSelector(isLoadingSelector);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    dispatch(signUpThunk(user));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +31,10 @@ const Signup: FC = () => {
       [name]: value,
     }));
   };
+
+  if (isLoading) {
+    return "Loading...";
+  }
 
   return (
     <form onSubmit={handleSubmit}>

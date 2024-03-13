@@ -12,3 +12,8 @@ export const userIdSelector = createSelector(
   signInSelector,
   (singin) => singin.id
 );
+
+export const isLoadingSelector = createSelector(
+  signInSelector,
+  (signin) => signin.isLoading
+);

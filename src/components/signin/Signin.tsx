@@ -1,10 +1,14 @@
 import React, { FC } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AppDispatch } from "../../store";
+import { useDispatch } from "react-redux";
+import { signUpThunk } from "../../store/signin/signin-thunks";
 
 const Signin: FC = () => {
+  const dispatch: AppDispatch = useDispatch();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const email = (event.target as any).email.value;
-    const password = (event.target as any).password.value;
+    dispatch(signUpThunk(user));
   };
 
   return (
@@ -28,6 +32,9 @@ const Signin: FC = () => {
           Sign In
         </button>
       </form>
+      <p>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
+      </p>
     </div>
   );
 };
