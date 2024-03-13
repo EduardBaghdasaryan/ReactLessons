@@ -4,6 +4,11 @@
       "id": "1",
       "email": "test@email.com",
       "password": "password1"
+    },
+    {
+      "id": "7307",
+      "email": "test@email.com",
+      "password": "password1"
     }
   ],
   "movies": [

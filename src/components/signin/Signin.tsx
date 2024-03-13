@@ -1,15 +1,10 @@
 import React, { FC } from "react";
-import useSignIn from "../../hooks/useSignin";
 
 const Signin: FC = () => {
-  const { signInUser } = useSignIn();
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const email = (event.target as any).email.value;
     const password = (event.target as any).password.value;
-
-    await signInUser({ email, password });
   };
 
   return (
