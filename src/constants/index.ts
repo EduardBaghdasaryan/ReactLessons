@@ -12,4 +12,10 @@ const ROUTES = {
   ORDERS: "/orders",
 };
 
-export { API_URL, ROUTES };
+const SORT_TYPES = {
+  ASC: "ascending",
+  DESC: "descending",
+  NONE: "none",
+};
+
+export { API_URL, ROUTES, SORT_TYPES };

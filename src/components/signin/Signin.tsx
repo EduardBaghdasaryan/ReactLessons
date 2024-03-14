@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { signInThunk } from "../../store/signin/signin-thunks";
 import { AppDispatch } from "../../store";
 import { ROUTES } from "../../constants";
-import FormInput from "../common/FormInput";
+import FormInput from "./FormInput";
 import { SignIn } from "../../types/signin.types";
 import { setUser } from "../../store/user/user-slice";
 

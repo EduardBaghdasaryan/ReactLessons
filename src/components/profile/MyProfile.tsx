@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useUserForm } from "../../hooks/useUserForm";
-import FormInput from "../common/FormInput";
+import FormInput from "../signin/FormInput";
 
 const MyProfile: FC = () => {
   const { user, isLoading, handleChange, handleSubmit } = useUserForm();

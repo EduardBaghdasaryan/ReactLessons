@@ -1,6 +1,6 @@
 import { Common } from ".";
 
-export type Product = {
+export type Item = {
   id: string;
   title: string;
   description: string;
@@ -9,5 +9,21 @@ export type Product = {
   price: number;
 };
 export interface ProductsInitialState extends Common {
-  products: Product[];
+  products: Item[];
 }
+
+export type ProductProps = {
+  name: string;
+  image: string;
+  price: number;
+  count?: number;
+  description?: string;
+};
+
+export type FilterAndSortOptions<T> = {
+  searchTerm: string;
+  sortProperty: keyof T | null;
+  sortOption: SortOption;
+};
+
+export type SortOption = "none" | "ascending" | "descending";

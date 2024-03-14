@@ -8,6 +8,7 @@ import { isAuthSelector } from "../store/signin/signin-selector";
 import Signup from "./signin/Signup";
 import Home from "./home/Home";
 import MyProfile from "./profile/MyProfile";
+import ProductsList from "./products/ProductsList";
 
 const App: FC = () => {
   const isAuth = useSelector(isAuthSelector);
@@ -18,6 +19,10 @@ const App: FC = () => {
         <Route path={ROUTES.SIGN_UP} element={<Signup />} />
         {isAuth && <Route path={ROUTES.HOME} element={<Home />} />}
         {isAuth && <Route path={ROUTES.MY_PROFILE} element={<MyProfile />} />}
+        {isAuth && (
+          <Route path={ROUTES.PRODUCT_LIST} element={<ProductsList />} />
+        )}
+
         <Route path="*" element={<SignIn />} />
       </Routes>
     </Router>

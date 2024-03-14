@@ -38,7 +38,10 @@ export const updateUserProfile = async (userData: User) => {
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get("/api/products");
+    ("serviiice");
+    const response = await axios.get(`${API_URL}/products`);
+    console.log("response", response);
+
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch products");
