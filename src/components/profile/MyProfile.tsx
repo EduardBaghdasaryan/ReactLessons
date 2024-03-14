@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import { useUserForm } from "../../hooks/useUserForm";
 import FormInput from "../common/FormInput";
-import { useSelector } from "react-redux";
-import { userDataSelector } from "../../store/user/user-selector";
 
 const MyProfile: FC = () => {
   const { user, isLoading, handleChange, handleSubmit } = useUserForm();

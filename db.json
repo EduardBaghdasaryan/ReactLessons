@@ -18,5 +18,47 @@
       "password": "test11",
       "phone": "phone"
     }
+  ],
+  "products": [
+    {
+      "id": "3",
+      "title": "Product 1",
+      "description": "Description for Product 1",
+      "imageUrl": "https://example.com/product1.jpg",
+      "count": 10,
+      "price": 20
+    },
+    {
+      "id": "4",
+      "title": "Product 2",
+      "description": "Description for Product 2",
+      "imageUrl": "https://example.com/product2.jpg",
+      "count": 8,
+      "price": 25
+    },
+    {
+      "id": "5",
+      "title": "Product 3",
+      "description": "Description for Product 3",
+      "imageUrl": "https://example.com/product3.jpg",
+      "count": 15,
+      "price": 30
+    },
+    {
+      "id": "6",
+      "title": "Product 4",
+      "description": "Description for Product 4",
+      "imageUrl": "https://example.com/product4.jpg",
+      "count": 12,
+      "price": 18
+    },
+    {
+      "id": "7",
+      "title": "Product 5",
+      "description": "Description for Product 5",
+      "imageUrl": "https://example.com/product5.jpg",
+      "count": 20,
+      "price": 35
+    }
   ]
 }
