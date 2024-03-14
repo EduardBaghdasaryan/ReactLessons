@@ -10,6 +10,7 @@ const Product: FC<ProductProps> = ({
   price,
   count,
   description,
+  onAddToCart,
 }) => {
   const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ const Product: FC<ProductProps> = ({
       <p>Price: ${price}</p>
       {count && <p>Count: {count}</p>}
       {description && <p>Description: {description}</p>}
+      <button onClick={onAddToCart}>Add to Cart</button>
     </div>
   );
 };

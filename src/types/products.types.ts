@@ -19,6 +19,7 @@ export type ProductProps = {
   id: string | number;
   count?: number;
   description?: string;
+  onAddToCart: () => void;
 };
 
 export type FilterAndSortOptions<T> = {

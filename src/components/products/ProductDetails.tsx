@@ -1,12 +1,20 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import useShoppingCart from "../../hooks/useShoppingCart";
 import { selectProductById } from "../../store/products/products-selector";
 import Product from "./Product";
 
 const ProductDetails: FC = () => {
   const { id } = useParams();
   const product = useSelector((state) => selectProductById(state, id));
+  const { addToCart } = useShoppingCart();
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product);
+    }
+  };
 
   if (!product) {
     return <div>Product not found</div>;
@@ -23,6 +31,7 @@ const ProductDetails: FC = () => {
         price={price}
         count={count}
         description={description}
+        onAddToCart={handleAddToCart}
       />
     </div>
   );

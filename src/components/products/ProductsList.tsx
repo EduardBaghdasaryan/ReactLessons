@@ -1,19 +1,26 @@
-import React, { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Product from "./Product";
-import { selectProducts } from "../../store/products/products-selector";
-import { Item, SortOption } from "../../types/products.types";
-import { AppDispatch } from "../../store";
-import { fetchProducts } from "../../store/products/products-thunks";
-import useProductFilterAndSort from "../../hooks/useProductFilterAndSort";
+import React, { FC } from "react";
 import { SORT_TYPES } from "../../constants";
+import useProductFilterAndSort from "../../hooks/useProductFilterAndSort";
 import useProducts from "../../hooks/useProducts";
+import { Item, SortOption } from "../../types/products.types";
+import Product from "./Product";
+import useShoppingCart from "../../hooks/useShoppingCart";
 
 const ProductsList: FC = () => {
   const allProducts = useProducts();
+  const { addToCart } = useShoppingCart();
 
   const { handleSearchChange, handleSortChange, sortedProducts } =
     useProductFilterAndSort<Item>(allProducts, null, "ascending");
+
+  const handleAddToCart = (productId: string) => {
+    const productToAdd = sortedProducts.find(
+      (product) => product.id === productId
+    );
+    if (productToAdd) {
+      addToCart(productToAdd);
+    }
+  };
 
   return (
     <div>
@@ -52,6 +59,7 @@ const ProductsList: FC = () => {
           name={product.title}
           image={product.imageUrl}
           price={product.price}
+          onAddToCart={() => handleAddToCart(product.id)}
         />
       ))}
     </div>
