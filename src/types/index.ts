@@ -15,5 +15,15 @@ export type User = {
   lastName: string;
   imageUrl: string;
   email: string;
+  password: string;
   phone: string;
+};
+
+export type Item = {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  count: number;
+  price: number;
 };

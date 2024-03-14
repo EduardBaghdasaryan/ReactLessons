@@ -13,6 +13,7 @@ const Signup: FC = () => {
     lastName: "",
     imageUrl: "",
     email: "",
+    password: "",
     phone: "",
   });
 
@@ -65,6 +66,13 @@ const Signup: FC = () => {
             value={user.email}
             onChange={handleChange}
             placeholder="Email"
+          />
+          <input
+            type="password"
+            name="password"
+            value={user.password}
+            onChange={handleChange}
+            placeholder="Password"
           />
           <input
             type="tel"

@@ -1,27 +1,44 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, AsyncThunk } from "@reduxjs/toolkit";
 import { SignIn, User } from "../../types";
-import { signInApiCall, singUpApiCall } from "../../services";
+import {
+  signInApiCall,
+  signUpApiCall,
+  updateUserProfile,
+} from "../../services";
 
-export const signInThunk = createAsyncThunk<
-  User,
-  SignIn,
-  { rejectValue: string }
->("users/signin", async (signIn, { rejectWithValue }) => {
-  try {
-    return await signInApiCall(signIn);
-  } catch (error) {
-    return rejectWithValue("Failed to sign in");
-  }
-});
+interface ThunkApiConfig {
+  rejectValue: string;
+}
 
-export const signUpThunk = createAsyncThunk<
-  User,
-  User,
-  { rejectValue: string }
->("users/createUser", async (user, { rejectWithValue }) => {
-  try {
-    return singUpApiCall(user);
-  } catch (error) {
-    return rejectWithValue("Failed delete user");
+export const signInThunk = createAsyncThunk<User, SignIn, ThunkApiConfig>(
+  "users/signin",
+  async (signIn, { rejectWithValue }) => {
+    const user = await signInApiCall(signIn);
+    if (user) {
+      return user;
+    }
+    return rejectWithValue("Invalid email or password");
   }
-});
+);
+
+export const signUpThunk = createAsyncThunk<User, User, ThunkApiConfig>(
+  "users/createUser",
+  async (user, { rejectWithValue }) => {
+    const newUser = await signUpApiCall(user);
+    if (newUser) {
+      return newUser;
+    }
+    return rejectWithValue("Failed to create user");
+  }
+);
+
+export const updateProfileThunk = createAsyncThunk<User, User, ThunkApiConfig>(
+  "profile/updateProfile",
+  async (userData, { rejectWithValue }) => {
+    const updatedUser = await updateUserProfile(userData);
+    if (updatedUser) {
+      return updatedUser as User;
+    }
+    return rejectWithValue("Failed to update profile");
+  }
+);
