@@ -1,29 +1,8 @@
-export type SigninInitialState = {
-  isAuth: boolean;
+export interface Common {
   isLoading: boolean;
-  userData: User;
-};
+  error: string | null;
+}
 
-export type SignIn = {
-  email: string;
-  password: string;
-};
-
-export type User = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  imageUrl: string;
-  email: string;
-  password: string;
-  phone: string;
-};
-
-export type Item = {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  count: number;
-  price: number;
-};
+export interface ThunkApiConfig {
+  rejectValue: string;
+}

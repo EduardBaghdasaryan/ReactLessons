@@ -1,14 +1,12 @@
 import { createAsyncThunk, AsyncThunk } from "@reduxjs/toolkit";
-import { SignIn, User } from "../../types";
 import {
   signInApiCall,
   signUpApiCall,
   updateUserProfile,
 } from "../../services";
-
-interface ThunkApiConfig {
-  rejectValue: string;
-}
+import { User } from "../../types/user.types";
+import { SignIn } from "../../types/signin.types";
+import { ThunkApiConfig } from "../../types";
 
 export const signInThunk = createAsyncThunk<User, SignIn, ThunkApiConfig>(
   "users/signin",
@@ -29,16 +27,5 @@ export const signUpThunk = createAsyncThunk<User, User, ThunkApiConfig>(
       return newUser;
     }
     return rejectWithValue("Failed to create user");
-  }
-);
-
-export const updateProfileThunk = createAsyncThunk<User, User, ThunkApiConfig>(
-  "profile/updateProfile",
-  async (userData, { rejectWithValue }) => {
-    const updatedUser = await updateUserProfile(userData);
-    if (updatedUser) {
-      return updatedUser as User;
-    }
-    return rejectWithValue("Failed to update profile");
   }
 );

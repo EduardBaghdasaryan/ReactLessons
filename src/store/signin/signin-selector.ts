@@ -8,11 +8,6 @@ export const isAuthSelector = createSelector(
   (singin) => singin.isAuth
 );
 
-export const userIdSelector = createSelector(
-  signInSelector,
-  (singin) => singin.userData
-);
-
 export const isLoadingSelector = createSelector(
   signInSelector,
   (signin) => signin.isLoading

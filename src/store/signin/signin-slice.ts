@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SigninInitialState, User } from "../../types";
 import { signInThunk, signUpThunk } from "./signin-thunks";
+import { SigninInitialState } from "../../types/signin.types";
 
 const initialState: SigninInitialState = {
   isAuth: false,
   isLoading: false,
-  userData: {} as User,
+  error: null,
 };
 
 const signInSlice = createSlice({
@@ -20,10 +20,10 @@ const signInSlice = createSlice({
       .addCase(signInThunk.fulfilled, (state, action) => {
         state.isAuth = true;
         state.isLoading = false;
-        state.userData = action.payload;
       })
       .addCase(signInThunk.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.error as string;
       })
       .addCase(signUpThunk.pending, (state, action) => {
         state.isLoading = true;
@@ -31,7 +31,6 @@ const signInSlice = createSlice({
       .addCase(signUpThunk.fulfilled, (state, action) => {
         state.isAuth = true;
         state.isLoading = false;
-        state.userData = action.payload;
       })
       .addCase(signUpThunk.rejected, (state, action) => {
         state.isLoading = false;
