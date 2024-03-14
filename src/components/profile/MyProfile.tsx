@@ -1,70 +1,56 @@
-import React from "react";
-import { useUserProfile } from "../../hooks/useUserProfile";
+import React, { FC } from "react";
+import { useUserForm } from "../../hooks/useUserForm";
+import FormInput from "../common/FormInput";
+import { useSelector } from "react-redux";
+import { userDataSelector } from "../../store/user/user-selector";
 
-const MyProfile = () => {
-  const { user, isLoading, handleChange, handleSubmit } = useUserProfile();
-
-  console.log("user", user);
+const MyProfile: FC = () => {
+  const { user, isLoading, handleChange, handleSubmit } = useUserForm();
 
   return (
     <div>
       <h2>My Profile</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={user.firstName}
-            onChange={handleChange}
-            placeholder="First Name"
-          />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={user.lastName}
-            onChange={handleChange}
-            placeholder="Last Name"
-          />
-        </div>
-        <div>
-          <label htmlFor="imageUrl">Image URL:</label>
-          <input
-            type="text"
-            id="imageUrl"
-            name="imageUrl"
-            value={user.imageUrl}
-            onChange={handleChange}
-            placeholder="Image URL"
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
-        </div>
-        <div>
-          <label htmlFor="phone">Phone:</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={user.phone}
-            onChange={handleChange}
-            placeholder="Phone"
-          />
-        </div>
+        <FormInput
+          id="firstName"
+          name="firstName"
+          value={user.firstName}
+          onChange={handleChange}
+          placeholder="First Name"
+          type="text"
+        />
+        <FormInput
+          id="lastName"
+          name="lastName"
+          value={user.lastName}
+          onChange={handleChange}
+          placeholder="Last Name"
+          type="text"
+        />
+        <FormInput
+          id="imageUrl"
+          name="imageUrl"
+          value={user.imageUrl}
+          onChange={handleChange}
+          placeholder="Image URL"
+          type="text"
+        />
+        <FormInput
+          id="email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}
+          placeholder="Email"
+          type="email"
+        />
+        <FormInput
+          id="phone"
+          name="phone"
+          value={user.phone}
+          onChange={handleChange}
+          placeholder="Phone"
+          type="tel"
+        />
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Updating..." : "Update Profile"}
         </button>

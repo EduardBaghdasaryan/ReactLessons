@@ -27,7 +27,7 @@ export const signUpApiCall = async (userData: User) => {
 export const updateUserProfile = async (userData: User) => {
   try {
     const response = await axios.put(
-      `${API_URL}/users${userData.id}`,
+      `${API_URL}/users/${userData.id}`,
       userData
     );
     return response.data;
