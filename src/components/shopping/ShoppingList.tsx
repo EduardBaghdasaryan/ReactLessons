@@ -1,9 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import useShoppingCart from "../../hooks/useShoppingCart";
+import Card from "./Card";
+import Modal from "./Modal";
 
 const ShoppingList: FC = () => {
   const { cart, removeItemFromCart, updateItemQuantity, clearCartHandler } =
     useShoppingCart();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleQuantityChange = (
     productId: string,
@@ -13,34 +16,31 @@ const ShoppingList: FC = () => {
     updateItemQuantity(productId, newQuantity);
   };
 
+  const handleCheckout = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <div>
       <h2>Shopping Cart</h2>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <ul>
+        <div>
           {cart.map((item) => (
-            <li key={item.id}>
-              <div>
-                <h3>{item.title}</h3>
-                <p>Price: ${item.price}</p>
-                <label htmlFor={`quantity-${item.id}`}>Quantity:</label>
-                <input
-                  type="number"
-                  id={`quantity-${item.id}`}
-                  value={item.count}
-                  onChange={(e) => handleQuantityChange(item.id, e)}
-                />
-                <button onClick={() => removeItemFromCart(item.id)}>
-                  Remove
-                </button>
-              </div>
-            </li>
+            <Card
+              key={item.id}
+              item={item}
+              onQuantityChange={(e) => handleQuantityChange(item.id, e)}
+              onRemove={() => removeItemFromCart(item.id)}
+            />
           ))}
-        </ul>
+        </div>
       )}
-      <button onClick={clearCartHandler}>Clear Cart</button>
+      <button onClick={handleCheckout}>Checkout</button>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2>Order confirmed</h2>
+      </Modal>
     </div>
   );
 };

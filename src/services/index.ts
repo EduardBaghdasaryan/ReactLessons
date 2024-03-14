@@ -2,6 +2,7 @@ import axios from "axios";
 import { API_URL } from "../constants/index";
 import { SignIn } from "../types/signin.types";
 import { User } from "../types/user.types";
+import { Order } from "../types/orders.types";
 
 export const signInApiCall = async (userData: SignIn) => {
   try {
@@ -45,5 +46,14 @@ export const getProducts = async () => {
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch products");
+  }
+};
+
+export const createOrder = async (orderData: Order) => {
+  try {
+    const response = await axios.post(`${API_URL}/orders`, orderData);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to create order");
   }
 };
