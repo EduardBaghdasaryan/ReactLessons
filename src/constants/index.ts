@@ -7,7 +7,7 @@ const ROUTES = {
   ADMIN: "/admin",
   MY_PROFILE: "/profile",
   PRODUCT_LIST: "/products",
-  PRODUCT_DETAILS: "/product-details",
+  PRODUCT_DETAILS: "/products/:id",
   SHOPPING_CART: "/cart",
   ORDERS: "/orders",
 };

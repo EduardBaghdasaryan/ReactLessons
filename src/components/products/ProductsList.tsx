@@ -48,6 +48,7 @@ const ProductsList: FC = () => {
       {sortedProducts?.map((product: Item) => (
         <Product
           key={product.id}
+          id={product.id}
           name={product.title}
           image={product.imageUrl}
           price={product.price}
