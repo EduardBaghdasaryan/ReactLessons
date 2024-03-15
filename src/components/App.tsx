@@ -11,6 +11,7 @@ import MyProfile from "./profile/MyProfile";
 import ProductsList from "./products/ProductsList";
 import ProductDetails from "./products/ProductDetails";
 import ShoppingList from "./shopping/ShoppingList";
+import OrdersList from "./orders/OrdersList";
 
 const App: FC = () => {
   const isAuth = useSelector(isAuthSelector);
@@ -30,6 +31,7 @@ const App: FC = () => {
         {isAuth && (
           <Route path={ROUTES.SHOPPING_CART} element={<ShoppingList />} />
         )}
+        {isAuth && <Route path={ROUTES.ORDERS} element={<OrdersList />} />}
         <Route path="*" element={<SignIn />} />
       </Routes>
     </Router>

@@ -10,3 +10,7 @@ export type Order = {
 export interface OrdersInitialState extends Common {
   orders: Order[];
 }
+
+export type OrderProps = {
+  order: Order;
+};

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { OrdersInitialState } from "../../types/orders.types";
-import { createOrderThunk } from "./orders-thunks";
+import { createOrderThunk, fetchOrdersThunk } from "./orders-thunks";
 
 const initialState: OrdersInitialState = {
   orders: [],
@@ -23,6 +23,18 @@ const ordersSlice = createSlice({
         state.orders.push(action.payload);
       })
       .addCase(createOrderThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message as string;
+      })
+      .addCase(fetchOrdersThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchOrdersThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.orders = action.payload;
+      })
+      .addCase(fetchOrdersThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message as string;
       });

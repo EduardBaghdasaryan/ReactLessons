@@ -6,8 +6,6 @@ import { ThunkApiConfig } from "../../types";
 export const fetchProducts = createAsyncThunk<Item[], void, ThunkApiConfig>(
   "products/fetchProducts",
   async (_, { rejectWithValue }) => {
-    console.log("thuuunk");
-
     const products = await getProducts();
     if (products.length) {
       return products;

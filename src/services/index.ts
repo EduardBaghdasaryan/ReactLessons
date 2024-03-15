@@ -57,3 +57,12 @@ export const createOrder = async (orderData: Order) => {
     throw new Error("Failed to create order");
   }
 };
+
+export const fetchOrders = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/orders`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch orders");
+  }
+};
