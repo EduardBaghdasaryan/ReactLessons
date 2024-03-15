@@ -1,12 +1,16 @@
 import React, { FC } from "react";
 import useCreateProduct from "../../hooks/useAddProduct";
+import { useSelector } from "react-redux";
+import { selectProductsError } from "../../store/products/products-selector";
 
 const CreateProduct: FC = () => {
   const { product, handleChange, handleSubmit } = useCreateProduct();
+  const error = useSelector(selectProductsError);
 
   return (
     <div>
       <h2>Create Product</h2>
+      {error && <p>Error: {error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title:</label>

@@ -5,10 +5,18 @@ import useProducts from "../../hooks/useProducts";
 import { Item, SortOption } from "../../types/products.types";
 import Product from "./Product";
 import useShoppingCart from "../../hooks/useShoppingCart";
+import { useSelector } from "react-redux";
+import {
+  selectProductsError,
+  selectProductsLoading,
+} from "../../store/products/products-selector";
 
 const ProductsList: FC = () => {
   const allProducts = useProducts();
   const { addToCart } = useShoppingCart();
+
+  const error = useSelector(selectProductsError);
+  const isLoading = useSelector(selectProductsLoading);
 
   const { handleSearchChange, handleSortChange, sortedProducts } =
     useProductFilterAndSort<Item>(allProducts, null, "ascending");
@@ -25,6 +33,8 @@ const ProductsList: FC = () => {
   return (
     <div>
       <h2>Products</h2>
+      {error && <p>Error: {error}</p>}
+      {isLoading && <p>Loading...</p>}
       <input
         type="text"
         placeholder="Search products"

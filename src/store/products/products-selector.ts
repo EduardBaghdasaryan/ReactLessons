@@ -14,3 +14,13 @@ export const selectProductById = createSelector(
     return products.find((product) => product.id === productId) || null;
   }
 );
+
+export const selectProductsError = createSelector(
+  selectProductsSlice,
+  (productsSlice) => productsSlice.error
+);
+
+export const selectProductsLoading = createSelector(
+  selectProductsSlice,
+  (productsSlice) => productsSlice.isLoading
+);
