@@ -24,7 +24,7 @@ const useShoppingCart = () => {
   };
 
   const clearCartHandler = () => {
-    dispatch(clearCart()); // Renamed to avoid conflict
+    dispatch(clearCart());
   };
 
   return {
