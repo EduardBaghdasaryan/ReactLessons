@@ -1,7 +1,17 @@
-// ordersSelectors.ts
 import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import { RootState } from "..";
 
-export const selectOrders = (state: RootState) => state.orders.orders;
-export const selectOrdersLoading = (state: RootState) => state.orders.loading;
-export const selectOrdersError = (state: RootState) => state.orders.error;
+export const selectOrders = createSelector(
+  (state: RootState) => state.orders.orders,
+  (orders) => orders
+);
+
+export const selectOrdersLoading = createSelector(
+  (state: RootState) => state.orders.isLoading,
+  (loading) => loading
+);
+
+export const selectOrdersError = createSelector(
+  (state: RootState) => state.orders.error,
+  (error) => error
+);

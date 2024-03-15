@@ -60,5 +60,105 @@
       "count": 20,
       "price": 35
     }
+  ],
+  "orders": [
+    {
+      "id": "c200",
+      "date": "2024-03-15T10:37:44.945Z",
+      "items": [
+        {
+          "id": "1",
+          "title": "Product 1",
+          "description": "Description for Product 1",
+          "imageUrl": "https://example.com/product1.jpg",
+          "count": 10,
+          "price": 20
+        }
+      ]
+    },
+    {
+      "id": "f298",
+      "date": "2024-03-15T10:42:56.743Z",
+      "items": [
+        {
+          "id": "1",
+          "title": "Product 1",
+          "description": "Description for Product 1",
+          "imageUrl": "https://example.com/product1.jpg",
+          "count": 10,
+          "price": 20
+        }
+      ]
+    },
+    {
+      "id": "11f2",
+      "date": "2024-03-15T10:43:30.759Z",
+      "items": [
+        {
+          "id": "1",
+          "title": "Product 1",
+          "description": "Description for Product 1",
+          "imageUrl": "https://example.com/product1.jpg",
+          "count": 10,
+          "price": 20
+        }
+      ]
+    },
+    {
+      "id": "4bfa",
+      "date": "2024-03-15T10:49:29.274Z",
+      "items": [
+        {
+          "id": "1",
+          "title": "Product 1",
+          "description": "Description for Product 1",
+          "imageUrl": "https://example.com/product1.jpg",
+          "count": 10,
+          "price": 20
+        }
+      ]
+    },
+    {
+      "id": "b69f",
+      "date": "2024-03-15T10:51:04.440Z",
+      "items": [
+        {
+          "id": "2",
+          "title": "Product 2",
+          "description": "Description for Product 2",
+          "imageUrl": "https://example.com/product2.jpg",
+          "count": 8,
+          "price": 25
+        }
+      ]
+    },
+    {
+      "id": "b2da",
+      "date": "2024-03-15T10:52:03.338Z",
+      "items": [
+        {
+          "id": "1",
+          "title": "Product 1",
+          "description": "Description for Product 1",
+          "imageUrl": "https://example.com/product1.jpg",
+          "count": 10,
+          "price": 20
+        }
+      ]
+    },
+    {
+      "id": "a0f8",
+      "date": "2024-03-15T10:53:12.182Z",
+      "items": [
+        {
+          "id": "1",
+          "title": "Product 1",
+          "description": "Description for Product 1",
+          "imageUrl": "https://example.com/product1.jpg",
+          "count": 10,
+          "price": 20
+        }
+      ]
+    }
   ]
 }

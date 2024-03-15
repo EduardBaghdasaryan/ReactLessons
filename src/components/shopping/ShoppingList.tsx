@@ -2,11 +2,16 @@ import React, { FC, useState } from "react";
 import useShoppingCart from "../../hooks/useShoppingCart";
 import Card from "./Card";
 import Modal from "./Modal";
+import { AppDispatch } from "../../store";
+import { useDispatch } from "react-redux";
+import { createOrder } from "../../services";
+import { createOrderThunk } from "../../store/orders/orders-thunks";
 
 const ShoppingList: FC = () => {
   const { cart, removeItemFromCart, updateItemQuantity, clearCartHandler } =
     useShoppingCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch: AppDispatch = useDispatch();
 
   const handleQuantityChange = (
     productId: string,
@@ -17,7 +22,13 @@ const ShoppingList: FC = () => {
   };
 
   const handleCheckout = () => {
+    const order = {
+      date: new Date().toISOString(),
+      items: cart,
+    };
+    dispatch(createOrderThunk(order));
     setIsModalOpen(true);
+    clearCartHandler();
   };
 
   return (

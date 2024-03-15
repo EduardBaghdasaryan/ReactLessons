@@ -1,5 +1,3 @@
-// store/products/productsSlice.ts
-
 import { createSlice } from "@reduxjs/toolkit";
 import { ProductsInitialState } from "../../types/products.types";
 import { fetchProducts } from "./products-thunks";

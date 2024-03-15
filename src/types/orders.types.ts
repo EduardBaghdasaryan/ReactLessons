@@ -2,7 +2,7 @@ import { Common } from ".";
 import { Item } from "./products.types";
 
 export type Order = {
-  id: string;
+  id?: string;
   date: string;
   items: Item[];
 };
