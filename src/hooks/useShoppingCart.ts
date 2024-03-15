@@ -14,15 +14,13 @@ const useShoppingCart = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const addToCart = (item: Item) => {
-    dispatch(addToCartAction(item)); // Renamed to avoid conflict
+    dispatch(addToCartAction(item));
   };
 
-  const removeItemFromCart = (itemId: string) => {
-    dispatch(removeFromCart(itemId)); // Renamed to avoid conflict
-  };
+  const removeItemFromCart = (itemId: string) => {};
 
   const updateItemQuantity = (itemId: string, newQuantity: number) => {
-    dispatch(updateQuantity({ itemId, newQuantity })); // Renamed to avoid conflict
+    dispatch(updateQuantity({ itemId, newQuantity }));
   };
 
   const clearCartHandler = () => {

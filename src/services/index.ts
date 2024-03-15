@@ -1,10 +1,9 @@
 import axios from "axios";
 import { API_URL } from "../constants/index";
+import { Order } from "../types/orders.types";
+import { Item } from "../types/products.types";
 import { SignIn } from "../types/signin.types";
 import { User } from "../types/user.types";
-import { Order } from "../types/orders.types";
-import Product from "../components/products/Product";
-import { Item } from "../types/products.types";
 
 export const signInApiCall = async (userData: SignIn) => {
   try {
@@ -43,7 +42,6 @@ export const getProducts = async () => {
   try {
     ("serviiice");
     const response = await axios.get(`${API_URL}/products`);
-    console.log("response", response);
 
     return response.data;
   } catch (error) {

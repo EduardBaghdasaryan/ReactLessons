@@ -1,4 +1,3 @@
-// Order.tsx
 import React, { FC } from "react";
 import { OrderProps } from "../../types/orders.types";
 

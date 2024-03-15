@@ -8,8 +8,6 @@ export const createOrderThunk = createAsyncThunk<Order, Order>(
   async (orderData, { rejectWithValue }) => {
     const createdOrder = await createOrder(orderData);
 
-    console.log("createdOrder", createdOrder);
-
     if (createdOrder.length) {
       return createdOrder as Order;
     }

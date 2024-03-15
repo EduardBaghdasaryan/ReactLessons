@@ -1,12 +1,8 @@
-import { createAsyncThunk, AsyncThunk } from "@reduxjs/toolkit";
-import {
-  signInApiCall,
-  signUpApiCall,
-  updateUserProfile,
-} from "../../services";
-import { User } from "../../types/user.types";
-import { SignIn } from "../../types/signin.types";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { signInApiCall, signUpApiCall } from "../../services";
 import { ThunkApiConfig } from "../../types";
+import { SignIn } from "../../types/signin.types";
+import { User } from "../../types/user.types";
 
 export const signInThunk = createAsyncThunk<User, SignIn, ThunkApiConfig>(
   "users/signin",
