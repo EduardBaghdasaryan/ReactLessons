@@ -60,23 +60,18 @@ const useProductFilterAndSort = <T extends Record<string, unknown>>(
       filterOptions.sortProperty
     ) {
       sorted.sort((a, b) => {
-        if (filterOptions.sortProperty) {
+        if (filterOptions.sortProperty && filterOptions.sortProperty) {
           const aValue = a[filterOptions.sortProperty];
           const bValue = b[filterOptions.sortProperty];
 
           if (
             typeof aValue === "number" &&
             typeof bValue === "number" &&
-            filterOptions.sortProperty
           ) {
             return filterOptions.sortOption === SORT_TYPES.ASC
               ? aValue - bValue
               : bValue - aValue;
-          } else if (
-            typeof aValue === "string" &&
-            typeof bValue === "string" &&
-            filterOptions.sortProperty
-          ) {
+          } else if (typeof aValue === "string" && typeof bValue === "string") {
             return filterOptions.sortOption === SORT_TYPES.ASC
               ? aValue.localeCompare(bValue)
               : bValue.localeCompare(aValue);

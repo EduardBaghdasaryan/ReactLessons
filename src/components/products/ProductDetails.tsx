@@ -23,17 +23,15 @@ const ProductDetails: FC = () => {
   const { title, imageUrl, price, count, description } = product;
 
   return (
-    <div>
-      <Product
-        id={id || ""}
-        name={title}
-        image={imageUrl}
-        price={price}
-        count={count}
-        description={description}
-        onAddToCart={handleAddToCart}
-      />
-    </div>
+    <Product
+      id={id || ""}
+      name={title}
+      image={imageUrl}
+      price={price}
+      count={count}
+      description={description}
+      onAddToCart={handleAddToCart}
+    />
   );
 };
 
