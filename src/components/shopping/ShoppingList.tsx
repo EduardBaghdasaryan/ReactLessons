@@ -1,11 +1,10 @@
 import React, { FC, useState } from "react";
+import { useDispatch } from "react-redux";
 import useShoppingCart from "../../hooks/useShoppingCart";
+import { AppDispatch } from "../../store";
+import { createOrderThunk } from "../../store/orders/orders-thunks";
 import Card from "./Card";
 import Modal from "./Modal";
-import { AppDispatch } from "../../store";
-import { useDispatch } from "react-redux";
-import { createOrder } from "../../services";
-import { createOrderThunk } from "../../store/orders/orders-thunks";
 
 const ShoppingList: FC = () => {
   const { cart, removeItemFromCart, updateItemQuantity, clearCartHandler } =

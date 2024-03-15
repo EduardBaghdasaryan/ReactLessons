@@ -21,23 +21,26 @@ const useProductFilterAndSort = <T extends Record<string, unknown>>(
     }));
   };
 
-  const handleSortChange = (
-    sortProperty: keyof T | null,
-    sortOption: SortOption
-  ) => {
+  const handleSortOptionChange = (sortOption: SortOption) => {
     setFilterOptions((prevOptions) => ({
       ...prevOptions,
-      sortProperty,
       sortOption,
     }));
   };
 
+  const handleSortPropertyChange = (sortProperty: keyof T | null) => {
+    setFilterOptions((prevOptions) => ({
+      ...prevOptions,
+      sortProperty,
+    }));
+  };
+
   const sortedProducts = useMemo(() => {
-    let sorted = [...products];
+    let filtered = [...products];
 
     if (filterOptions.searchTerm) {
       const lowerCaseSearchTerm = filterOptions.searchTerm.toLowerCase();
-      sorted = sorted.filter((product) => {
+      filtered = filtered.filter((product) => {
         return Object.entries(product).some(([key, value]) => {
           if (typeof value === "string" || typeof value === "number") {
             return (
@@ -50,31 +53,52 @@ const useProductFilterAndSort = <T extends Record<string, unknown>>(
       });
     }
 
-    if (filterOptions.sortOption !== "none" && filterOptions.sortProperty) {
-      sorted.sort((a, b) => {
-        const aValue = a[filterOptions.sortProperty!];
-        const bValue = b[filterOptions.sortProperty!];
+    let sorted = [...filtered];
 
-        if (typeof aValue === "number" && typeof bValue === "number") {
-          return filterOptions.sortOption === SORT_TYPES.ASC
-            ? aValue - bValue
-            : bValue - aValue;
-        } else if (typeof aValue === "string" && typeof bValue === "string") {
-          return filterOptions.sortOption === SORT_TYPES.ASC
-            ? aValue.localeCompare(bValue)
-            : bValue.localeCompare(aValue);
+    if (
+      filterOptions.sortOption !== SORT_TYPES.NONE &&
+      filterOptions.sortProperty
+    ) {
+      sorted.sort((a, b) => {
+        if (filterOptions.sortProperty) {
+          const aValue = a[filterOptions.sortProperty];
+          const bValue = b[filterOptions.sortProperty];
+
+          if (
+            typeof aValue === "number" &&
+            typeof bValue === "number" &&
+            filterOptions.sortProperty
+          ) {
+            return filterOptions.sortOption === SORT_TYPES.ASC
+              ? aValue - bValue
+              : bValue - aValue;
+          } else if (
+            typeof aValue === "string" &&
+            typeof bValue === "string" &&
+            filterOptions.sortProperty
+          ) {
+            return filterOptions.sortOption === SORT_TYPES.ASC
+              ? aValue.localeCompare(bValue)
+              : bValue.localeCompare(aValue);
+          }
         }
         return 0;
       });
     }
 
     return sorted;
-  }, [products, filterOptions]);
+  }, [
+    products,
+    filterOptions.sortOption,
+    filterOptions.searchTerm,
+    filterOptions.sortProperty,
+  ]);
 
   return {
     filterOptions,
     handleSearchChange,
-    handleSortChange,
+    handleSortOptionChange,
+    handleSortPropertyChange,
     sortedProducts,
   };
 };

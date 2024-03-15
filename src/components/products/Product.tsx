@@ -23,7 +23,7 @@ const Product: FC<ProductProps> = ({
       <div onClick={handleOnClick}>
         <h3>{name}</h3>
         <img src={image} alt={name} />
-        <p>Price: ${price}</p>
+        <p>Price: {price}</p>
         {count && <p>Count: {count}</p>}
         {description && <p>Description: {description}</p>}
       </div>

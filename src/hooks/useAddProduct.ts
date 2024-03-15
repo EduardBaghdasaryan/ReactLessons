@@ -20,9 +20,11 @@ const useCreateProduct = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+    const parsedValue =
+      name === "count" || name === "price" ? parseFloat(value) : value;
     setProduct((prevProduct) => ({
       ...prevProduct,
-      [name]: value,
+      [name]: parsedValue,
     }));
   };
 

@@ -18,8 +18,13 @@ const ProductsList: FC = () => {
   const error = useSelector(selectProductsError);
   const isLoading = useSelector(selectProductsLoading);
 
-  const { handleSearchChange, handleSortChange, sortedProducts } =
-    useProductFilterAndSort<Item>(allProducts, null, "ascending");
+  const {
+    handleSearchChange,
+    handleSortOptionChange,
+    handleSortPropertyChange,
+    sortedProducts,
+    filterOptions,
+  } = useProductFilterAndSort<Item>(allProducts, null, "ascending");
 
   const handleAddToCart = (productId: string) => {
     const productToAdd = sortedProducts.find(
@@ -41,9 +46,7 @@ const ProductsList: FC = () => {
         onChange={(e) => handleSearchChange(e.target.value)}
       />
       <select
-        onChange={(e) =>
-          handleSortChange(e.target.value as keyof Item, "ascending")
-        }
+        onChange={(e) => handleSortPropertyChange(e.target.value as keyof Item)}
       >
         <option value="">Sort by</option>
         <option value="title">Title</option>
@@ -51,12 +54,7 @@ const ProductsList: FC = () => {
         <option value="price">Price</option>
       </select>
       <select
-        onChange={(e) =>
-          handleSortChange(
-            e.target.value as keyof Item,
-            e.target.value as SortOption
-          )
-        }
+        onChange={(e) => handleSortOptionChange(e.target.value as SortOption)}
       >
         <option value={SORT_TYPES.ASC}>Ascending</option>
         <option value={SORT_TYPES.DESC}>Descending</option>

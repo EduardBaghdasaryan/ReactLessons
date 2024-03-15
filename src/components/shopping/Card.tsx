@@ -11,7 +11,7 @@ const Card: FC<CardProps> = ({ item, onQuantityChange, onRemove }) => {
   return (
     <div>
       <h3>{item.title}</h3>
-      <p>Price: ${item.price}</p>
+      <p>Price: {item.price}</p>
       <label htmlFor={`quantity-${item.id}`}>Quantity:</label>
       <input
         type="number"
