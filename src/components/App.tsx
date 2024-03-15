@@ -12,6 +12,7 @@ import ProductsList from "./products/ProductsList";
 import ProductDetails from "./products/ProductDetails";
 import ShoppingList from "./shopping/ShoppingList";
 import OrdersList from "./orders/OrdersList";
+import CreateProduct from "./admin/AddProduct";
 
 const App: FC = () => {
   const isAuth = useSelector(isAuthSelector);
@@ -32,6 +33,8 @@ const App: FC = () => {
           <Route path={ROUTES.SHOPPING_CART} element={<ShoppingList />} />
         )}
         {isAuth && <Route path={ROUTES.ORDERS} element={<OrdersList />} />}
+        <Route path="*" element={<SignIn />} />
+        {isAuth && <Route path={ROUTES.ADMIN} element={<CreateProduct />} />}
         <Route path="*" element={<SignIn />} />
       </Routes>
     </Router>

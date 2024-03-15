@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getProducts } from "../../services";
+import { createProduct, getProducts } from "../../services";
 import { Item } from "../../types/products.types";
 import { ThunkApiConfig } from "../../types";
 
@@ -11,5 +11,16 @@ export const fetchProducts = createAsyncThunk<Item[], void, ThunkApiConfig>(
       return products;
     }
     return rejectWithValue("Cant fetch products");
+  }
+);
+
+export const createProductThunk = createAsyncThunk<Item, Item>(
+  "products/createProduct",
+  async (productData, { rejectWithValue }) => {
+    const createdProduct = await createProduct(productData);
+    if (createdProduct.length) {
+      return createdProduct;
+    }
+    return rejectWithValue("Failed to create product");
   }
 );

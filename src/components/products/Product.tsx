@@ -19,14 +19,16 @@ const Product: FC<ProductProps> = ({
   };
 
   return (
-    <div onClick={handleOnClick}>
-      <h3>{name}</h3>
-      <img src={image} alt={name} />
-      <p>Price: ${price}</p>
-      {count && <p>Count: {count}</p>}
-      {description && <p>Description: {description}</p>}
-      <button onClick={onAddToCart}>Add to Cart</button>
-    </div>
+    <>
+      <div onClick={handleOnClick}>
+        <h3>{name}</h3>
+        <img src={image} alt={name} />
+        <p>Price: ${price}</p>
+        {count && <p>Count: {count}</p>}
+        {description && <p>Description: {description}</p>}
+      </div>
+      <button onClick={onAddToCart}>Add to Cart</button>ßß
+    </>
   );
 };
 
