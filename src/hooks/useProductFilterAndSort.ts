@@ -64,10 +64,7 @@ const useProductFilterAndSort = <T extends Record<string, unknown>>(
           const aValue = a[filterOptions.sortProperty];
           const bValue = b[filterOptions.sortProperty];
 
-          if (
-            typeof aValue === "number" &&
-            typeof bValue === "number" &&
-          ) {
+          if (typeof aValue === "number" && typeof bValue === "number") {
             return filterOptions.sortOption === SORT_TYPES.ASC
               ? aValue - bValue
               : bValue - aValue;
